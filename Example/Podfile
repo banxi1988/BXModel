@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'BXModel_Example', :exclusive => true do
+  pod "BXModel", :path => "../"
+end
+
+target 'BXModel_Tests', :exclusive => true do
+  pod "BXModel", :path => "../"
+
+  
+end
