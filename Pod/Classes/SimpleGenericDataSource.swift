@@ -10,13 +10,12 @@ import UIKit
 
 public class SimpleGenericDataSource<T>:NSObject,UITableViewDataSource,UICollectionViewDataSource{
     public var reuseIdentifier = "cell"
-    public var section = 0
     internal var items = [T]()
+    public var section = 0
     public typealias DidSelectedItemBlock = ( (T,atIndexPath:NSIndexPath) -> Void )
     
-    public init(items:[T],section: Int = 0){
+    public init(items:[T] = []){
         self.items = items
-        self.section = section
     }
     
    public func updateItems(items:[T]){

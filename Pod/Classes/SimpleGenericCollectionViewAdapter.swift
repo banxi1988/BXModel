@@ -13,9 +13,9 @@ public class SimpleGenericCollectionViewAdapter<T:BXModel,V:UICollectionViewCell
     public let collectionView:UICollectionView
     public var didSelectedItem: DidSelectedItemBlock?
     
-    public init(collectionView:UICollectionView,items:[T],section : Int = 0){
+    public init(collectionView:UICollectionView,items:[T] = []){
         self.collectionView = collectionView
-        super.init(items: items,section:section)
+        super.init(items: items)
     }
     
     public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {

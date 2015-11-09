@@ -11,11 +11,12 @@ import UIKit
 public class SimpleGenericTableViewAdapter<T:BXModel,V:UITableViewCell where V:BXBindable >: SimpleGenericDataSource<T>,UITableViewDelegate{
     public let tableView:UITableView
     public var didSelectedItem: DidSelectedItemBlock?
-    public init(tableView:UITableView,items:[T],section:Int = 0){
+    public init(tableView:UITableView,items:[T] = []){
         self.tableView = tableView
-        super.init(items: items,section:section)
+        super.init(items: items)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.registerClass(V.self, forCellReuseIdentifier: reuseIdentifier)
     }
     
    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
