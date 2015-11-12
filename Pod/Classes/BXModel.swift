@@ -5,11 +5,15 @@ public protocol JSONDeserializable{
     init(json:JSON)
 }
 
-public protocol BXModel:JSONDeserializable{
+public protocol BXModelAware{
+    
+}
+
+public protocol BXModel:BXModelAware,JSONDeserializable{
 }
 
 
-public extension BXModel{
+public extension JSONDeserializable{
     public static func arrayFrom(json:JSON) -> [Self]{
         var array = [Self]()
         for (_,subJson):(String,JSON) in json{

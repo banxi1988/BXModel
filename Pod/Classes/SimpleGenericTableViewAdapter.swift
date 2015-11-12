@@ -8,15 +8,21 @@
 
 import UIKit
 
-public class SimpleGenericTableViewAdapter<T:BXModel,V:UITableViewCell where V:BXBindable >: SimpleGenericDataSource<T>,UITableViewDelegate{
+public class SimpleGenericTableViewAdapter<T,V:UITableViewCell where V:BXBindable >: SimpleGenericDataSource<T>,UITableViewDelegate{
     public let tableView:UITableView
     public var didSelectedItem: DidSelectedItemBlock?
+    public var configureCellBlock:( (V,NSIndexPath) -> Void )?
     public init(tableView:UITableView,items:[T] = []){
         self.tableView = tableView
         super.init(items: items)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.registerClass(V.self, forCellReuseIdentifier: reuseIdentifier)
+        self.reuseIdentifier = simpleClassName(V)+"_cell"
+        if V.hasNib{
+            tableView.registerNib(V.nib(), forCellReuseIdentifier: reuseIdentifier)
+        }else{
+            tableView.registerClass(V.self, forCellReuseIdentifier: reuseIdentifier)
+        }
     }
     
    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -33,7 +39,12 @@ public class SimpleGenericTableViewAdapter<T:BXModel,V:UITableViewCell where V:B
         if let m = model as? V.ModelType{
             cell.bind(m)
         }
+        configureCell(cell, atIndexPath: indexPath)
         return cell       
+    }
+    
+    public func configureCell(cell:V,atIndexPath indexPath:NSIndexPath){
+        self.configureCellBlock?(cell,indexPath)
     }
     
    public override func updateItems(items: [T]) {

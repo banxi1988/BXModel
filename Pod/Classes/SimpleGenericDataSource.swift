@@ -10,7 +10,7 @@ import UIKit
 
 public class SimpleGenericDataSource<T>:NSObject,UITableViewDataSource,UICollectionViewDataSource{
     public var reuseIdentifier = "cell"
-    internal var items = [T]()
+    var items = [T]()
     public var section = 0
     public typealias DidSelectedItemBlock = ( (T,atIndexPath:NSIndexPath) -> Void )
     
@@ -35,11 +35,11 @@ public class SimpleGenericDataSource<T>:NSObject,UITableViewDataSource,UICollect
     
     
     // MARK: UITableViewDataSource
-    final public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    final public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return numberOfRows()
     }
     
