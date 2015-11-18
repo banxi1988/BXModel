@@ -17,14 +17,15 @@ public protocol BXNibable{
     typealias ItemType
     static var hasNib:Bool{ get }
     static func nib() -> UINib
-    static func instaniate() -> ItemType
+    static func instantiate() -> ItemType
 }
 
 
-extension UITableViewCell:BXNibable{
+extension UIView:BXNibable{
     public static var hasNib:Bool{
         let name = simpleClassName(self)
-        let path = NSBundle.mainBundle().pathForResource(name, ofType: "nib")
+        let bundle = NSBundle(forClass: self)
+        let path = bundle.pathForResource(name, ofType: "nib")
         return path != nil
     }
     
@@ -33,7 +34,7 @@ extension UITableViewCell:BXNibable{
         return UINib(nibName: name, bundle: nil)
     }
     
-    public static func instaniate() -> UITableViewCell {
-        return nib().instantiateWithOwner(self, options: nil).first as! UITableViewCell
+    public static func instantiate() -> UIView{
+        return nib().instantiateWithOwner(self, options: nil).first as! UIView
     }
 }

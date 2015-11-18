@@ -1,19 +1,24 @@
 import Foundation
 import SwiftyJSON
 
-public protocol JSONDeserializable{
+public protocol BXJSONDeserializable{
     init(json:JSON)
 }
+
+public protocol BXJSONSerializable{
+  func toDict() -> [String:AnyObject]
+}
+
 
 public protocol BXModelAware{
     
 }
 
-public protocol BXModel:BXModelAware,JSONDeserializable{
+public protocol BXModel:BXModelAware,BXJSONDeserializable{
 }
 
 
-public extension JSONDeserializable{
+public extension BXJSONDeserializable{
     public static func arrayFrom(json:JSON) -> [Self]{
         var array = [Self]()
         for (_,subJson):(String,JSON) in json{
@@ -22,6 +27,13 @@ public extension JSONDeserializable{
         }
         return array
     }
+}
+
+
+public extension BXJSONSerializable{
+  public static func arrayFrom(models:[Self]) -> [[String:AnyObject]]{
+    return models.map{ $0.toDict () }
+  }
 }
 
 public extension NSObject{
