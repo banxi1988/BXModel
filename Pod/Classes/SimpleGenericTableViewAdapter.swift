@@ -51,5 +51,10 @@ public class SimpleGenericTableViewAdapter<T,V:UITableViewCell where V:BXBindabl
         super.updateItems(items)
         tableView.reloadData()
     }
+  
+  public override func appendItems(items: [T]) {
+    super.appendItems(items)
+    tableView.reloadData()
+  }
     
 }

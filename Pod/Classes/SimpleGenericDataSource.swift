@@ -29,7 +29,11 @@ public class SimpleGenericDataSource<T>:NSObject,UITableViewDataSource,UICollect
     
    public func numberOfRows() -> Int {
         return self.items.count
-    }
+   }
+  
+   public func appendItems(items:[T]){
+     self.items.appendContentsOf(items)
+   }
     
     
     
