@@ -10,10 +10,32 @@ import UIKit
 
 public class SimpleGenericTableViewController<T,V:UITableViewCell where V:BXBindable>: UITableViewController{
   var adapter:SimpleGenericTableViewAdapter<T,V>?
+ 
+  public typealias DidSelectedItemBlock = ( (T,atIndexPath:NSIndexPath) -> Void )
+  public var didSelectedItemBlock: DidSelectedItemBlock?{
+    didSet{
+      adapter?.didSelectedItem = didSelectedItemBlock
+    }
+  }
+  public override init(style: UITableViewStyle) {
+    super.init(style: style)
+  }
+  
+  public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+  }
+  
+  public required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+  
   
   public override func viewDidLoad() {
     super.viewDidLoad()
+    tableView.estimatedRowHeight = 88
+    tableView.rowHeight = UITableViewAutomaticDimension
     adapter = SimpleGenericTableViewAdapter(tableView:tableView)
+    adapter?.didSelectedItem = didSelectedItemBlock
     if !_copyItems.isEmpty{
       adapter?.updateItems(_copyItems)
       // 有可能
@@ -21,6 +43,12 @@ public class SimpleGenericTableViewController<T,V:UITableViewCell where V:BXBind
   }
   
   var _copyItems = [T]()
+
+  
+}
+
+//MARK: BXDataSourceContainer
+extension SimpleGenericTableViewController:BXDataSourceContainer{
   // Helper
   public func updateItems(items:[T]){
     _copyItems = items
@@ -36,10 +64,9 @@ public class SimpleGenericTableViewController<T,V:UITableViewCell where V:BXBind
     }
   }
   
-  
-
-  
+  public var numberOfItems:Int { return _copyItems.count }
 }
+
 
 // MARK:SimpleGenericTableViewController - Helper
 public extension SimpleGenericTableViewController{

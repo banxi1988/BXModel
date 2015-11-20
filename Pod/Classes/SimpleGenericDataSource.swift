@@ -8,7 +8,14 @@
 
 import UIKit
 
-public class SimpleGenericDataSource<T>:NSObject,UITableViewDataSource,UICollectionViewDataSource{
+public protocol BXDataSourceContainer{
+  typealias ItemType
+  func updateItems(items:[ItemType])
+  func appendItems(items:[ItemType])
+  var numberOfItems:Int{ get }
+}
+
+public class SimpleGenericDataSource<T>:NSObject,UITableViewDataSource,UICollectionViewDataSource,BXDataSourceContainer{
     public var reuseIdentifier = "cell"
     var items = [T]()
     public var section = 0
@@ -18,11 +25,6 @@ public class SimpleGenericDataSource<T>:NSObject,UITableViewDataSource,UICollect
         self.items = items
     }
     
-   public func updateItems(items:[T]){
-        self.items = items
-    }
-    
-    
    public func itemAtIndexPath(indexPath:NSIndexPath) -> T{
         return items[indexPath.row]
     }
@@ -31,12 +33,6 @@ public class SimpleGenericDataSource<T>:NSObject,UITableViewDataSource,UICollect
         return self.items.count
    }
   
-   public func appendItems(items:[T]){
-     self.items.appendContentsOf(items)
-   }
-    
-    
-    
     
     // MARK: UITableViewDataSource
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -79,5 +75,19 @@ public class SimpleGenericDataSource<T>:NSObject,UITableViewDataSource,UICollect
    public func configureTableViewCell(cell:UITableViewCell,atIndexPath indexPath:NSIndexPath){
         
     }
+
+  // MARK: BXDataSourceContainer
+  // cause /Users/banxi/Workspace/BXModel/Pod/Classes/SimpleGenericTableViewAdapter.swift:50:25: Declarations from extensions cannot be overridden yet
+    public func updateItems(items:[T]){
+      self.items = items
+    }
     
+    
+    public func appendItems(items:[T]){
+      self.items.appendContentsOf(items)
+    }
+    
+    public var numberOfItems:Int{
+      return self.items.count
+    }
 }
