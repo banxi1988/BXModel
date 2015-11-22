@@ -9,13 +9,15 @@
 import UIKit
 
 
-public class SimpleGenericCollectionViewAdapter<T:BXModel,V:UICollectionViewCell where V:BXBindable >: SimpleGenericDataSource<T>,UICollectionViewDelegate{
+public class SimpleGenericCollectionViewAdapter<T:BXModelAware,V:UICollectionViewCell where V:BXBindable >: SimpleGenericDataSource<T>,UICollectionViewDelegate{
     public let collectionView:UICollectionView
     public var didSelectedItem: DidSelectedItemBlock?
     
     public init(collectionView:UICollectionView,items:[T] = []){
         self.collectionView = collectionView
         super.init(items: items)
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
     
     public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
