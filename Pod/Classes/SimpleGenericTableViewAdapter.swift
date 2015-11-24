@@ -27,6 +27,7 @@ public class SimpleGenericTableViewAdapter<T,V:UITableViewCell where V:BXBindabl
     
    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.didSelectedItem?(itemAtIndexPath(indexPath),atIndexPath:indexPath)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
    public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
