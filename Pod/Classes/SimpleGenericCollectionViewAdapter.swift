@@ -18,8 +18,14 @@ public class SimpleGenericCollectionViewAdapter<T:BXModelAware,V:UICollectionVie
         super.init(items: items)
         collectionView.delegate = self
         collectionView.dataSource = self
+      self.reuseIdentifier = simpleClassName(V)+"_cell"
+      if V.hasNib{
+        collectionView.registerNib(V.nib(), forCellWithReuseIdentifier: reuseIdentifier)
+      }else{
+        collectionView.registerClass(V.self, forCellWithReuseIdentifier: reuseIdentifier)
+      }
     }
-    
+  
     public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         self.didSelectedItem?(itemAtIndexPath(indexPath),atIndexPath:indexPath)
     }
