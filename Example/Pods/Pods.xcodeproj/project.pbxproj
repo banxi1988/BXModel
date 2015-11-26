@@ -13,11 +13,15 @@
 		21C8F23379D799379FDEA4A3851918CC /* BXModel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 87BCA22F8AEFB3A62530C66C61FAD2F5 /* BXModel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2858C7657261C2F20F8FF440CCB603D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BCEA5642F7AD1C4C083BC31D4039893 /* Foundation.framework */; };
 		3AEA68483233D214FFA5B576E80766A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BCEA5642F7AD1C4C083BC31D4039893 /* Foundation.framework */; };
+		3E06A4971C0698E900B48DD1 /* BXBasicItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E06A4921C0698E900B48DD1 /* BXBasicItem.swift */; };
+		3E06A4981C0698E900B48DD1 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E06A4931C0698E900B48DD1 /* Helpers.swift */; };
+		3E06A4991C0698E900B48DD1 /* SimpleGenericTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E06A4941C0698E900B48DD1 /* SimpleGenericTableViewController.swift */; };
+		3E06A49A1C0698E900B48DD1 /* SimpleTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E06A4951C0698E900B48DD1 /* SimpleTableViewAdapter.swift */; };
+		3E06A49B1C0698E900B48DD1 /* UIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E06A4961C0698E900B48DD1 /* UIModels.swift */; };
 		3E853D6A1BEF6AA10099D11B /* SimpleGenericDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E853D691BEF6AA10099D11B /* SimpleGenericDataSource.swift */; };
 		3E853D6C1BEF6BC90099D11B /* SimpleJsonDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E853D6B1BEF6BC90099D11B /* SimpleJsonDataSource.swift */; };
 		3E853D6E1BEF6C0B0099D11B /* SimpleGenericCollectionViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E853D6D1BEF6C0B0099D11B /* SimpleGenericCollectionViewAdapter.swift */; };
 		3E853D701BEF6CDC0099D11B /* SimpleGenericTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E853D6F1BEF6CDC0099D11B /* SimpleGenericTableViewAdapter.swift */; };
-		3E853D741BEF75EF0099D11B /* BXBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E853D731BEF75EF0099D11B /* BXBindable.swift */; };
 		7268597D9E6D05F24A54DB3B3B273378 /* Pods-BXModel_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 87229BF6327676BBAA7B1E924870F8D2 /* Pods-BXModel_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		80681503FDC25C74928C14944128AC1F /* BXModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83886ED5B4A4A3435B8936969B99706B /* BXModel.swift */; };
 		81EFE222D1F320C8E7626A7A9AB3A6BB /* Pods-BXModel_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9804972BC72A61AB15ACE6074B21F38A /* Pods-BXModel_Tests-dummy.m */; };
@@ -89,11 +93,15 @@
 		32B9BBA8F5B33E56C38F5546432F66B7 /* SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
 		3661CEB47AA24244B5E343C0D221315A /* Pods-BXModel_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BXModel_Tests-resources.sh"; sourceTree = "<group>"; };
 		36969CFC8EF4D17E13CC88AE4AE4BC0B /* BXModel.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = BXModel.modulemap; sourceTree = "<group>"; };
+		3E06A4921C0698E900B48DD1 /* BXBasicItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXBasicItem.swift; sourceTree = "<group>"; };
+		3E06A4931C0698E900B48DD1 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		3E06A4941C0698E900B48DD1 /* SimpleGenericTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleGenericTableViewController.swift; sourceTree = "<group>"; };
+		3E06A4951C0698E900B48DD1 /* SimpleTableViewAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleTableViewAdapter.swift; sourceTree = "<group>"; };
+		3E06A4961C0698E900B48DD1 /* UIModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIModels.swift; sourceTree = "<group>"; };
 		3E853D691BEF6AA10099D11B /* SimpleGenericDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleGenericDataSource.swift; sourceTree = "<group>"; };
 		3E853D6B1BEF6BC90099D11B /* SimpleJsonDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleJsonDataSource.swift; sourceTree = "<group>"; };
 		3E853D6D1BEF6C0B0099D11B /* SimpleGenericCollectionViewAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleGenericCollectionViewAdapter.swift; sourceTree = "<group>"; };
 		3E853D6F1BEF6CDC0099D11B /* SimpleGenericTableViewAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleGenericTableViewAdapter.swift; sourceTree = "<group>"; };
-		3E853D731BEF75EF0099D11B /* BXBindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BXBindable.swift; sourceTree = "<group>"; };
 		44EB034B56691EF3E8F7068AD775CAAE /* BXModel.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BXModel.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		4506813930CC972C4AD7CB1787927ADC /* Pods_BXModel_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BXModel_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		492298D3E15D172EF4670F7FD4B00A64 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -286,12 +294,16 @@
 		9FDACD1D43DF5F037D3F97F9C2F2DE6B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3E06A4921C0698E900B48DD1 /* BXBasicItem.swift */,
+				3E06A4931C0698E900B48DD1 /* Helpers.swift */,
+				3E06A4941C0698E900B48DD1 /* SimpleGenericTableViewController.swift */,
+				3E06A4951C0698E900B48DD1 /* SimpleTableViewAdapter.swift */,
+				3E06A4961C0698E900B48DD1 /* UIModels.swift */,
 				83886ED5B4A4A3435B8936969B99706B /* BXModel.swift */,
 				3E853D691BEF6AA10099D11B /* SimpleGenericDataSource.swift */,
 				3E853D6B1BEF6BC90099D11B /* SimpleJsonDataSource.swift */,
 				3E853D6D1BEF6C0B0099D11B /* SimpleGenericCollectionViewAdapter.swift */,
 				3E853D6F1BEF6CDC0099D11B /* SimpleGenericTableViewAdapter.swift */,
-				3E853D731BEF75EF0099D11B /* BXBindable.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -554,13 +566,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E853D741BEF75EF0099D11B /* BXBindable.swift in Sources */,
 				3E853D6C1BEF6BC90099D11B /* SimpleJsonDataSource.swift in Sources */,
+				3E06A49A1C0698E900B48DD1 /* SimpleTableViewAdapter.swift in Sources */,
 				8F3A11D5428B0AA942DD997A60C6CAD4 /* BXModel-dummy.m in Sources */,
 				3E853D6E1BEF6C0B0099D11B /* SimpleGenericCollectionViewAdapter.swift in Sources */,
+				3E06A4981C0698E900B48DD1 /* Helpers.swift in Sources */,
 				80681503FDC25C74928C14944128AC1F /* BXModel.swift in Sources */,
 				3E853D6A1BEF6AA10099D11B /* SimpleGenericDataSource.swift in Sources */,
 				3E853D701BEF6CDC0099D11B /* SimpleGenericTableViewAdapter.swift in Sources */,
+				3E06A4971C0698E900B48DD1 /* BXBasicItem.swift in Sources */,
+				3E06A4991C0698E900B48DD1 /* SimpleGenericTableViewController.swift in Sources */,
+				3E06A49B1C0698E900B48DD1 /* UIModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
