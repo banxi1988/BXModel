@@ -10,8 +10,8 @@ import UIKit
 
 public protocol BXDataSourceContainer{
   typealias ItemType
-  func updateItems(items:[ItemType])
-  func appendItems(items:[ItemType])
+  func updateItems<S:SequenceType where S.Generator.Element == ItemType>(items:S)
+  func appendItems<S:SequenceType where S.Generator.Element == ItemType>(items:S)
   var numberOfItems:Int{ get }
 }
 
@@ -19,6 +19,7 @@ public class SimpleGenericDataSource<T>:NSObject,UITableViewDataSource,UICollect
     public var reuseIdentifier = "cell"
     var items = [T]()
     public var section = 0
+    public typealias ItemType = T
     public typealias DidSelectedItemBlock = ( (T,atIndexPath:NSIndexPath) -> Void )
     
     public init(items:[T] = []){
@@ -78,16 +79,24 @@ public class SimpleGenericDataSource<T>:NSObject,UITableViewDataSource,UICollect
 
   // MARK: BXDataSourceContainer
   // cause /Users/banxi/Workspace/BXModel/Pod/Classes/SimpleGenericTableViewAdapter.swift:50:25: Declarations from extensions cannot be overridden yet
-    public func updateItems(items:[T]){
-      self.items = items
-    }
-    
-    
-    public func appendItems(items:[T]){
-      self.items.appendContentsOf(items)
-    }
-    
+  
+  public func updateItems<S : SequenceType where S.Generator.Element == ItemType>(items: S) {
+    self.items.removeAll()
+    self.items.appendContentsOf(items)
+  }
+  
+  public func appendItems<S : SequenceType where S.Generator.Element == ItemType>(items: S) {
+    self.items.appendContentsOf(items)
+  }
+  
     public var numberOfItems:Int{
       return self.items.count
     }
+  
+}
+
+extension SimpleGenericDataSource where T:Equatable{
+  public func indexOfItem(item:T) -> Int?{
+    return self.items.indexOf(item)
+  }
 }

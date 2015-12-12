@@ -48,12 +48,12 @@ public class SimpleGenericTableViewAdapter<T,V:UITableViewCell where V:BXBindabl
         self.configureCellBlock?(cell,indexPath)
     }
     
-   public override func updateItems(items: [T]) {
+  public override func updateItems<S:SequenceType where S.Generator.Element == T>(items: S) {
         super.updateItems(items)
         tableView.reloadData()
     }
-  
-  public override func appendItems(items: [T]) {
+ 
+  public override func appendItems<S : SequenceType where S.Generator.Element == T>(items: S) {
     super.appendItems(items)
     tableView.reloadData()
   }

@@ -39,14 +39,20 @@ public class SimpleGenericCollectionViewAdapter<T:BXModelAware,V:UICollectionVie
         return cell
     }
     
-    
-    
-    public override func updateItems(items: [T]) {
-        super.updateItems(items)
-        collectionView.reloadData()
+  
+  
+    public override func updateItems<S : SequenceType where S.Generator.Element == ItemType>(items: S) {
+          super.updateItems(items)
+          collectionView.reloadData()
     }
     
-    
-    
-    
+ 
+  
+  public override func appendItems<S : SequenceType where S.Generator.Element == ItemType>(items: S) {
+    super.appendItems(items)
+    collectionView.reloadData()
+  }
+  
+  
+  
 }

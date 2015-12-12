@@ -9,7 +9,7 @@
 import UIKit
 
 public class StaticTableViewCell:UITableViewCell {
-  public var height:CGFloat = 44
+  public var staticHeight:CGFloat = 44
   
-  public override var bx_height:CGFloat{ return height }
+  public override var bx_height:CGFloat{ return staticHeight }
 }

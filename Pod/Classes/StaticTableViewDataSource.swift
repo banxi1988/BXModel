@@ -8,11 +8,14 @@
 
 import Foundation
 
-public class StaticTableViewDataSource:NSObject,UITableViewDataSource{
+public class StaticTableViewDataSource:NSObject,UITableViewDataSource,BXDataSourceContainer{
   var cells:[UITableViewCell] = []
+  public typealias ItemType = UITableViewCell
   public init(cells:[UITableViewCell] = []){
     self.cells = cells
   }
+  
+  
   
   public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 1
@@ -37,5 +40,16 @@ public class StaticTableViewDataSource:NSObject,UITableViewDataSource{
   public func appendContentsOf(cells:[UITableViewCell]){
     self.cells.appendContentsOf(cells)
   }
+ 
+  
+  public func updateItems<S : SequenceType where S.Generator.Element == ItemType>(items: S) {
+   self.cells.removeAll()
+    self.cells.appendContentsOf(items)
+  }
+  
+  public func appendItems<S : SequenceType where S.Generator.Element == ItemType>(items: S) {
+    self.cells.appendContentsOf(items)
+  }
+  public var numberOfItems:Int{ return cells.count }
   
 }

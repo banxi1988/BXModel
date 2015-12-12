@@ -49,15 +49,17 @@ public class SimpleGenericTableViewController<T,V:UITableViewCell where V:BXBind
 
 //MARK: BXDataSourceContainer
 extension SimpleGenericTableViewController:BXDataSourceContainer{
-  // Helper
-  public func updateItems(items:[T]){
-    _copyItems = items
+  public typealias ItemType = T
+  
+  public func updateItems<S : SequenceType where S.Generator.Element == ItemType>(items: S) {
+    _copyItems.removeAll()
+    _copyItems.appendContentsOf(items)
     if let adapter = adapter{
       adapter.updateItems(items)
     }
   }
   
-  public func appendItems(items:[T]){
+  public func appendItems<S : SequenceType where S.Generator.Element == ItemType>(items: S) {
     _copyItems.appendContentsOf(items)
     if let adapter = adapter{
       adapter.appendItems(items)
