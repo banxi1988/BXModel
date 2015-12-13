@@ -23,12 +23,12 @@ public class ComplexTableViewAdapter<T,V:StaticTableViewCell where V:BXBindable 
   }
   
   public override func itemAtIndexPath(indexPath: NSIndexPath) -> T {
-    let index = indexPath.row - cells.count - 1
+    let index = indexPath.row - cells.count
     return items[index]
   }
   
   public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return self.cells.count + numberOfItems
+    return numberOfRows()
   }
   
   public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
