@@ -23,7 +23,7 @@ public class ComplexTableViewAdapter<T,V:StaticTableViewCell where V:BXBindable 
   }
   
   public override func itemAtIndexPath(indexPath: NSIndexPath) -> T {
-    let index = indexPath.row - cells.count
+    let index = indexPath.row - cells.count - 1
     return items[index]
   }
   
