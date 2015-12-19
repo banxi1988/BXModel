@@ -31,7 +31,7 @@ extension UIView:BXNibable{
     
     public static func nib() -> UINib{
         let name = simpleClassName(self)
-        return UINib(nibName: name, bundle: nil)
+        return UINib(nibName: name, bundle: NSBundle(forClass: self))
     }
     
     public static func instantiate() -> UIView{
