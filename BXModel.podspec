@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = "BXModel"
   s.version          = "0.1.0"
-  s.summary          = "A short description of BXModel."
+  s.summary          = "BXModel ships some convinent Generic Stub for UITableViewDataSource,UICollectionViewDataSource"
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,14 +17,18 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
   s.description      = <<-DESC
+BXModel Help you implements  UITableViewDataSource,and UICollectionViewDataSource,and With BXModel to Implements
+a  MVVM Like Pattern.
+BXModel have add Some Convinent protocol default implemention for Deserializiable SwiftyJSON to BXModel adopted Model
+BXModel have add convinent method to load UIView from nib
                        DESC
 
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/BXModel"
+  s.homepage         = "https://github.com/banxi1988/BXModel"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "banxi1988" => "banxi1988@gmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/BXModel.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => "https://github.com/banxi1988/BXModel.git", :tag => s.version.to_s }
+  # s.social_media_url = 'https://twitter.com/banxi1988
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
