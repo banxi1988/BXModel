@@ -32,6 +32,7 @@ public class SimpleGenericTableViewController<T,V:UITableViewCell where V:BXBind
   
   public override func viewDidLoad() {
     super.viewDidLoad()
+    tableView.tableFooterView = UIView()
     tableView.estimatedRowHeight = 88
     tableView.rowHeight = UITableViewAutomaticDimension
     adapter = SimpleGenericTableViewAdapter(tableView:tableView)

@@ -18,6 +18,9 @@ extension UITableViewCell:StaticTableViewCellAware{
 
 public class StaticTableViewAdapter:StaticTableViewDataSource,UITableViewDelegate{
   
+  
+  public var didSelectCell:((UITableViewCell,NSIndexPath) -> Void)?
+  
  public override init(cells: [UITableViewCell] = []) {
    super.init(cells: cells)
   }
@@ -27,5 +30,10 @@ public class StaticTableViewAdapter:StaticTableViewDataSource,UITableViewDelegat
   // MARK:UITableViewDelegate
    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
     return cellAtIndexPath(indexPath).bx_height
+  }
+  
+  public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let cell = cellAtIndexPath(indexPath)
+    self.didSelectCell?(cell,indexPath)
   }
 }
