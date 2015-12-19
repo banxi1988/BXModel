@@ -21,6 +21,10 @@ public protocol BXBasicItemAware:BXTextItemAware,BXDetailTextItemAware{
     
 }
 
+extension String:BXBasicItemAware{
+  public var bx_text:String{return self}
+  public var bx_detailText:String{ return ""}
+}
 
 public class BXBasicItem: BXBasicItemAware{
     public let text:String
