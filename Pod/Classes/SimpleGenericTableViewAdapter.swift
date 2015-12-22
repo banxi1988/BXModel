@@ -11,6 +11,7 @@ import UIKit
 public class SimpleGenericTableViewAdapter<T,V:UITableViewCell where V:BXBindable >: SimpleGenericDataSource<T>,UITableViewDelegate{
     public let tableView:UITableView
     public var didSelectedItem: DidSelectedItemBlock?
+    public var preBindCellBlock:( (V,NSIndexPath) -> Void )?
     public var configureCellBlock:( (V,NSIndexPath) -> Void )?
     public init(tableView:UITableView,items:[T] = []){
         self.tableView = tableView
@@ -37,11 +38,12 @@ public class SimpleGenericTableViewAdapter<T,V:UITableViewCell where V:BXBindabl
     public func cellForRowAtIndexPath(indexPath:NSIndexPath) -> V {
          let cell = tableView.dequeueReusableCellWithIdentifier(self.reuseIdentifier, forIndexPath: indexPath) as! V
         let model = itemAtIndexPath(indexPath)
+         preBindCellBlock?(cell,indexPath)
         if let m = model as? V.ModelType{
             cell.bind(m)
         }
         configureCell(cell, atIndexPath: indexPath)
-        return cell       
+        return cell
     }
     
     public func configureCell(cell:V,atIndexPath indexPath:NSIndexPath){
