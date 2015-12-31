@@ -12,7 +12,9 @@ import UIKit
 public class SimpleGenericCollectionViewAdapter<T:BXModelAware,V:UICollectionViewCell where V:BXBindable >: SimpleGenericDataSource<T>,UICollectionViewDelegate{
     public let collectionView:UICollectionView
     public var didSelectedItem: DidSelectedItemBlock?
-    
+    public var preBindCellBlock:( (V,NSIndexPath) -> Void )?
+    public var postBindCellBlock:( (V,NSIndexPath) -> Void )?
+  
     public init(collectionView:UICollectionView,items:[T] = []){
         self.collectionView = collectionView
         super.init(items: items)
@@ -32,10 +34,12 @@ public class SimpleGenericCollectionViewAdapter<T:BXModelAware,V:UICollectionVie
     
     public override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(self.reuseIdentifier, forIndexPath: indexPath) as! V
+         preBindCellBlock?(cell,indexPath)
         let model = itemAtIndexPath(indexPath)
         if let m = model as? V.ModelType{
             cell.bind(m)
         }
+        postBindCellBlock?(cell,indexPath)
         return cell
     }
     

@@ -11,6 +11,7 @@ import Foundation
 public class StaticTableViewDataSource:NSObject,UITableViewDataSource,BXDataSourceContainer{
   var cells:[UITableViewCell] = []
   public typealias ItemType = UITableViewCell
+  public var section = 0
   public init(cells:[UITableViewCell] = []){
     self.cells = cells
   }

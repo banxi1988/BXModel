@@ -17,7 +17,7 @@ public protocol BXDataSourceContainer{
 
 public class SimpleGenericDataSource<T>:NSObject,UITableViewDataSource,UICollectionViewDataSource,BXDataSourceContainer{
     public var reuseIdentifier = "cell"
-    var items = [T]()
+    public private(set) var items = [T]()
     public var section = 0
     public typealias ItemType = T
     public typealias DidSelectedItemBlock = ( (T,atIndexPath:NSIndexPath) -> Void )
@@ -88,7 +88,10 @@ public class SimpleGenericDataSource<T>:NSObject,UITableViewDataSource,UICollect
   public func appendItems<S : SequenceType where S.Generator.Element == ItemType>(items: S) {
     self.items.appendContentsOf(items)
   }
-  
+ 
+  public func insert(item:T,atIndex index :Int){
+    self.items.insert(item, atIndex: index)
+  }
     public var numberOfItems:Int{
       return self.items.count
     }
@@ -98,5 +101,9 @@ public class SimpleGenericDataSource<T>:NSObject,UITableViewDataSource,UICollect
 extension SimpleGenericDataSource where T:Equatable{
   public func indexOfItem(item:T) -> Int?{
     return self.items.indexOf(item)
+  }
+  
+  public func removeAtIndex(index:Int) -> T{
+    return items.removeAtIndex(index)
   }
 }

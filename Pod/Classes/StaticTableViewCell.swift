@@ -10,6 +10,8 @@ import UIKit
 
 public class StaticTableViewCell:UITableViewCell {
   public var staticHeight:CGFloat = 44
+  public var removeSeparator:Bool = false
+  public var removeSeparatorInset:Bool = false
   
   public override var bx_height:CGFloat{ return staticHeight }
 }
