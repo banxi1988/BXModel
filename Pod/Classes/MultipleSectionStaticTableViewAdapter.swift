@@ -32,7 +32,7 @@ public class StaticTableViewSection {
   }
 }
 
-public class MultipleSectionTableViewAdapter:NSObject,UITableViewDataSource,BXDataSourceContainer,UITableViewDelegate{
+public class MultipleSectionStaticTableViewAdapter:NSObject,UITableViewDataSource,BXDataSourceContainer,UITableViewDelegate{
   public private(set) var tableViewSections:[StaticTableViewSection] = []
   public typealias ItemType = StaticTableViewSection
   

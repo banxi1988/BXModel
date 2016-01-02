@@ -12,6 +12,8 @@ public class StaticTableViewCell:UITableViewCell {
   public var staticHeight:CGFloat = 44
   public var removeSeparator:Bool = false
   public var removeSeparatorInset:Bool = false
+  public var shouldHighlight:Bool = false
   
   public override var bx_height:CGFloat{ return staticHeight }
+  public override var bx_shouldHighlight:Bool{ return shouldHighlight }
 }
