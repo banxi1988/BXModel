@@ -106,4 +106,17 @@ extension SimpleGenericDataSource where T:Equatable{
   public func removeAtIndex(index:Int) -> T{
     return items.removeAtIndex(index)
   }
+  
+  public func removeItem(item:T) -> T?{
+    if let index = indexOfItem(item){
+      self.items.removeAtIndex(index)
+    }
+    return nil
+  }
+  
+  public func removeItems(items:[T]){
+    for item in items{
+      removeItem(item)
+    }
+  }
 }
