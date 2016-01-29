@@ -42,6 +42,11 @@ public class MultipleSectionStaticTableViewAdapter:NSObject,UITableViewDataSourc
     self.tableViewSections = sections
   }
   
+  public func bindTo(tableView:UITableView){
+    tableView.dataSource = self
+    tableView.delegate = self
+  }
+  
 
   private func tableViewSectionAt(section:Int) -> StaticTableViewSection{
     return tableViewSections[section]
