@@ -23,7 +23,7 @@ public class StaticTableViewAdapter:StaticTableViewDataSource,UITableViewDelegat
   public var referenceSectionFooterHeight:CGFloat = 15
   public var sectionHeaderView:UIView?
   public var sectionFooterView:UIView?
-  public weak var tableView:UITableView?
+  public private(set) weak var tableView:UITableView?
   
   public var sectionHeaderHeight:CGFloat{
     return sectionHeaderView == nil ? 0:referenceSectionHeaderHeight

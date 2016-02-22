@@ -9,7 +9,7 @@
 import UIKit
 
 public class SimpleGenericTableViewAdapter<T,V:UITableViewCell where V:BXBindable >: SimpleGenericDataSource<T>,UITableViewDelegate{
-    public private(set) var tableView:UITableView?
+    public private(set) weak var tableView:UITableView?
     public var didSelectedItem: DidSelectedItemBlock?
     public var preBindCellBlock:( (V,NSIndexPath) -> Void )?
     public var configureCellBlock:( (V,NSIndexPath) -> Void )?

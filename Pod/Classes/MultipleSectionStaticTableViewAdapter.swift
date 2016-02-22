@@ -13,9 +13,13 @@ public class StaticTableViewSection {
   public var referenceSectionFooterHeight:CGFloat = 44
   public var sectionHeaderView:UIView?
   public var sectionFooterView:UIView?
-  private var cells:[UITableViewCell] = []
+  public private(set) var cells:[UITableViewCell] = []
   
-  public init(cells:[UITableViewCell]){
+  public init(cells:[UITableViewCell] = []){
+    self.cells = cells
+  }
+  
+  public func updateCells(cells:[UITableViewCell]){
     self.cells = cells
   }
   
@@ -37,12 +41,14 @@ public class MultipleSectionStaticTableViewAdapter:NSObject,UITableViewDataSourc
   public typealias ItemType = StaticTableViewSection
   
   public var didSelectCell:((UITableViewCell,NSIndexPath) -> Void)?
+  public private(set) weak var tableView:UITableView?
   
   public init(sections:[StaticTableViewSection] = []){
     self.tableViewSections = sections
   }
   
   public func bindTo(tableView:UITableView){
+    self.tableView = tableView
     tableView.dataSource = self
     tableView.delegate = self
   }
@@ -100,20 +106,24 @@ public class MultipleSectionStaticTableViewAdapter:NSObject,UITableViewDataSourc
   // MARK: DataSource Container
   public func append(section:StaticTableViewSection){
     self.tableViewSections.append(section)
+    self.tableView?.reloadData()
   }
   
   public func appendContentsOf(sections:[StaticTableViewSection]){
     self.tableViewSections.appendContentsOf(sections)
+    self.tableView?.reloadData()
   }
   
   
   public func updateItems<S : SequenceType where S.Generator.Element == ItemType>(items: S) {
     self.tableViewSections.removeAll()
     self.tableViewSections.appendContentsOf(items)
+    self.tableView?.reloadData()
   }
   
   public func appendItems<S : SequenceType where S.Generator.Element == ItemType>(items: S) {
     self.tableViewSections.appendContentsOf(items)
+    self.tableView?.reloadData()
   }
   public var numberOfItems:Int{ return tableViewSections.count }
   

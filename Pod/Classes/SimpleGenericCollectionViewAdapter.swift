@@ -10,7 +10,7 @@ import UIKit
 
 
 public class SimpleGenericCollectionViewAdapter<T:BXModelAware,V:UICollectionViewCell where V:BXBindable >: SimpleGenericDataSource<T>,UICollectionViewDelegate{
-  public var collectionView:UICollectionView?
+  public private(set) weak var collectionView:UICollectionView?
   public var didSelectedItem: DidSelectedItemBlock?
   public var preBindCellBlock:( (V,NSIndexPath) -> Void )?
   public var postBindCellBlock:( (V,NSIndexPath) -> Void )?
