@@ -34,9 +34,9 @@ BXModel have add convinent method to load UIView from nib
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'BXModel' => ['Pod/Assets/*.png']
-  }
+  #s.resource_bundles = {
+    #'BXModel' => ['Pod/Assets/*.png']
+  #}
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

@@ -84,10 +84,10 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-BXModel_Tests/BXModel.framework"
-  install_framework "Pods-BXModel_Tests/SwiftyJSON.framework"
+  install_framework "$CONFIGURATION_BUILD_DIR/BXModel/BXModel.framework"
+  install_framework "$CONFIGURATION_BUILD_DIR/SwiftyJSON/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-BXModel_Tests/BXModel.framework"
-  install_framework "Pods-BXModel_Tests/SwiftyJSON.framework"
+  install_framework "$CONFIGURATION_BUILD_DIR/BXModel/BXModel.framework"
+  install_framework "$CONFIGURATION_BUILD_DIR/SwiftyJSON/SwiftyJSON.framework"
 fi
