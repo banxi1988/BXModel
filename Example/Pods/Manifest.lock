@@ -1,5 +1,5 @@
 PODS:
-  - BXModel (0.2.2):
+  - BXModel (0.2.6):
     - SwiftyJSON
   - SwiftyJSON (2.3.2)
 
@@ -11,9 +11,9 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  BXModel: 29bdecd20b73a860c0eb8bde6cbdf2298e83c981
+  BXModel: b780002282966a920b67894487a2d01816f00ce4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 PODFILE CHECKSUM: 7992bc8480be32e06aee0f8107e286805c99d292
 
-COCOAPODS: 1.0.0.beta.4
+COCOAPODS: 1.0.0.rc.2
