@@ -12,6 +12,9 @@ public class StaticTableViewDataSource:NSObject,UITableViewDataSource,BXDataSour
   public private(set) var cells:[UITableViewCell] = []
   public typealias ItemType = UITableViewCell
   public var section = 0
+  
+  public var configureCellBlock:(UITableViewCell -> Void)?
+  
   public init(cells:[UITableViewCell] = []){
     self.cells = cells
   }
@@ -31,7 +34,9 @@ public class StaticTableViewDataSource:NSObject,UITableViewDataSource,BXDataSour
   }
   
   public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-    return cells[indexPath.row]
+    let cell = cellAtIndexPath(indexPath)
+    self.configureCellBlock?(cell)
+    return cell
   }
   
   public func append(cell:UITableViewCell){
