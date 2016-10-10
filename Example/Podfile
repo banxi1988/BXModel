@@ -5,9 +5,3 @@ platform :ios,'8.0'
 target 'BXModel_Example' do
   pod "BXModel", :path => "../"
 end
-
-target 'BXModel_Tests' do
-  pod "BXModel", :path => "../"
-
-  
-end

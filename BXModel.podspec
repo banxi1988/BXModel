@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "BXModel"
-  s.version          = "0.2.8"
+  s.version          = "1.0.0"
   s.summary          = "BXModel ships some convinent Generic Stub for UITableViewDataSource,UICollectionViewDataSource"
 
 # This description is used to generate tags and improve search results.
@@ -40,5 +40,5 @@ BXModel have add convinent method to load UIView from nib
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'SwiftyJSON'
+  s.dependency 'SwiftyJSON', '~>3.1.1'
 end

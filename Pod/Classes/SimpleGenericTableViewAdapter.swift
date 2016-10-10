@@ -8,22 +8,26 @@
 
 import UIKit
 
-public class SimpleGenericTableViewAdapter<T,V:UITableViewCell where V:BXBindable >: SimpleGenericDataSource<T>,UITableViewDelegate{
-  public private(set) weak var tableView:UITableView?
-  public var didSelectedItem: DidSelectedItemBlock?
-  public var preBindCellBlock:( (V,NSIndexPath) -> Void )?
-  public var configureCellBlock:( (V,NSIndexPath) -> Void )?
-  public var allowSelection = false
+open class SimpleGenericTableViewAdapter<T,V:UITableViewCell>: SimpleGenericDataSource<T>,UITableViewDelegate where V:BXBindable {
+  open fileprivate(set) weak var tableView:UITableView?
+  open var didSelectedItem: DidSelectedItemBlock?
+  open var preBindCellBlock:( (V,IndexPath) -> Void )?
+  open var postBindCellBlock:( (V,IndexPath) -> Void )?
+  open var configureCellBlock:( (V,IndexPath) -> Void )?
+  public typealias WillDisplayCellBlock = ( (V,_ withItem:T,_ atIndexPath:IndexPath) -> Void )
+  open var willDisplayCellBlock: WillDisplayCellBlock?
   
-  public var referenceSectionHeaderHeight:CGFloat = 15
-  public var referenceSectionFooterHeight:CGFloat = 15
-  public var sectionHeaderView:UIView?
-  public var sectionFooterView:UIView?
-  public var sectionHeaderHeight:CGFloat{
+  open var allowSelection = false
+  
+  open var referenceSectionHeaderHeight:CGFloat = 15
+  open var referenceSectionFooterHeight:CGFloat = 15
+  open var sectionHeaderView:UIView?
+  open var sectionFooterView:UIView?
+  open var sectionHeaderHeight:CGFloat{
     return sectionHeaderView == nil ? 0:referenceSectionHeaderHeight
   }
   
-  public var sectionFooterHeight:CGFloat{
+  open var sectionFooterHeight:CGFloat{
     return sectionFooterView == nil ? 0:referenceSectionFooterHeight
   }
   
@@ -34,73 +38,85 @@ public class SimpleGenericTableViewAdapter<T,V:UITableViewCell where V:BXBindabl
     }
   }
   
-  public func bindTo(tableView:UITableView){
+  open func bindTo(_ tableView:UITableView){
     self.tableView = tableView
     tableView.dataSource = self
     tableView.delegate = self
-    self.reuseIdentifier = simpleClassName(V)+"_cell"
+    self.reuseIdentifier = simpleClassName(V.self)+"_cell"
     if V.hasNib{
-      tableView.registerNib(V.nib(), forCellReuseIdentifier: reuseIdentifier)
+      tableView.register(V.nib(), forCellReuseIdentifier: reuseIdentifier)
     }else{
-      tableView.registerClass(V.self, forCellReuseIdentifier: reuseIdentifier)
+      tableView.register(V.self, forCellReuseIdentifier: reuseIdentifier)
     }
   }
   
-  public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    self.didSelectedItem?(itemAtIndexPath(indexPath),atIndexPath:indexPath)
+  open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    self.didSelectedItem?(itemAtIndexPath(indexPath),indexPath)
     if !allowSelection{
-      tableView.deselectRowAtIndexPath(indexPath, animated: true)
+      tableView.deselectRow(at: indexPath, animated: true)
     }
   }
   
-  public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     return cellForRowAtIndexPath(indexPath)
   }
   
-  public func cellForRowAtIndexPath(indexPath:NSIndexPath) -> V {
-    let cell = tableView!.dequeueReusableCellWithIdentifier(self.reuseIdentifier, forIndexPath: indexPath) as! V
+  open func cellForRowAtIndexPath(_ indexPath:IndexPath) -> V {
+    let cell = tableView!.dequeueReusableCell(withIdentifier: self.reuseIdentifier, for: indexPath) as! V
     let model = itemAtIndexPath(indexPath)
     preBindCellBlock?(cell,indexPath)
     if let m = model as? V.ModelType{
       cell.bind(m)
     }
     configureCell(cell, atIndexPath: indexPath)
+    postBindCellBlock?(cell,indexPath)
     return cell
   }
   
-  public func configureCell(cell:V,atIndexPath indexPath:NSIndexPath){
+  open func configureCell(_ cell:V,atIndexPath indexPath:IndexPath){
     self.configureCellBlock?(cell,indexPath)
   }
   
-  public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
+  open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat{
     return sectionHeaderHeight
   }
   
-  public func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat{
+  open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat{
     return sectionFooterHeight
   }
   
-  public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?{ // custom view for header. will be adjusted to default or specified header height
+  open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?{ // custom view for header. will be adjusted to default or specified header height
     return sectionHeaderView
   }
   
-  public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView?{ // custom view for footer. will be adjusted to default or specified footer height
+  open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView?{ // custom view for footer. will be adjusted to default or specified footer height
     return sectionFooterView
   }
   
-  public override func updateItems<S:SequenceType where S.Generator.Element == T>(items: S) {
+  //MARK: UITableViewDelegate
+  open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    let item = itemAtIndexPath(indexPath)
+    if let subCell = cell as? V{
+      self.willDisplayCellBlock?(subCell,item,indexPath)
+    }
+  }
+  
+  
+  open override func updateItems<S:Sequence>(_ items: S) where S.Iterator.Element == T {
     super.updateItems(items)
     tableView?.reloadData()
   }
   
-  public override func appendItems<S : SequenceType where S.Generator.Element == T>(items: S) {
+  open override func appendItems<S : Sequence>(_ items: S) where S.Iterator.Element == T {
     super.appendItems(items)
     tableView?.reloadData()
   }
   
-  public override func insert(item: T, atIndex index: Int) {
+  open override func insert(_ item: T, atIndex index: Int) {
     super.insert(item, atIndex: index)
     tableView?.reloadData()
   }
+  
+
   
 }
