@@ -6,7 +6,7 @@ public protocol BXJSONDeserializable{
 }
 
 public protocol BXJSONSerializable{
-  func toDict() -> [String:AnyObject]
+  func toDict() -> [String:Any]
 }
 
 
@@ -31,7 +31,7 @@ public extension BXJSONDeserializable{
 
 
 public extension BXJSONSerializable{
-  public static func arrayFrom(_ models:[Self]) -> [[String:AnyObject]]{
+  public static func arrayFrom(_ models:[Self]) -> [[String:Any]]{
     return models.map{ $0.toDict () }
   }
 }
