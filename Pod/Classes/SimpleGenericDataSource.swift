@@ -116,7 +116,7 @@ extension SimpleGenericDataSource where T:Equatable{
   
   public func removeItems(_ items:[T]){
     for item in items{
-      removeItem(item)
+      let _ = removeItem(item)
     }
   }
 }

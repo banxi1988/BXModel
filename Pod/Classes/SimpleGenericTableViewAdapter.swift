@@ -57,6 +57,7 @@ open class SimpleGenericTableViewAdapter<T,V:UITableViewCell>: SimpleGenericData
     }
   }
   
+  
   open override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     return cellForRowAtIndexPath(indexPath)
   }
